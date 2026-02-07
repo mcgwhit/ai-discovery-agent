@@ -1,0 +1,23 @@
+import os
+import streamlit as st
+from openai import OpenAI
+
+st.title("AI Discovery Agent - v1")
+
+# OpenAI client (expects OPENAI_API_KEY in environment)
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+notes = st.text_area("Paste discovery notes here:", height=220)
+
+if st.button("Analyze"):
+    if not notes.strip():
+        st.warning("Paste some notes first.")
+    else:
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a B2B pre-sales discovery expert. Return a structured analysis with: Problems, Success Metrics, Requirements, Risks, Open Questions, and a Demo Agenda."},
+                {"role": "user", "content": notes},
+            ],
+        )
+        st.write(resp.choices[0].message.content)
