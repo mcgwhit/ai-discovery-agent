@@ -25,7 +25,8 @@ Return ONLY valid JSON matching this schema:
   },
   "risks_red_flags": ["..."],
   "open_questions": ["..."],
-  "demo_agenda": ["..."]
+  "demo_agenda": ["..."],
+  "missing_info": ["..."]
 }
 """
 
@@ -83,6 +84,9 @@ if st.button("Analyze"):
 
     st.subheader("Open questions")
     st.write(data.get("open_questions", []))
+
+    st.subheader("Missing info")
+    st.write(data.get("missing_info",[]))
 
     st.subheader("Demo agenda")
     st.write(data.get("demo_agenda", []))
