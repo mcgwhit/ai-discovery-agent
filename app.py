@@ -60,6 +60,8 @@ if st.button("Analyze"):
         )
 
     raw = resp.choices[0].message.content
+    with st.expander("show raw JSON"):
+        st.code(raw, language = "json")
     try:
         data = to_json(raw)
         st.subheader("Deal fit score")
