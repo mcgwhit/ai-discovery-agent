@@ -28,6 +28,7 @@ Return ONLY valid JSON matching this schema:
   "demo_agenda": ["..."],
   "missing_info": ["..."]
   "deal_fit_score": "low | medium | high"
+  "confidence_level": low | medium | high"
 }
 """
 
@@ -62,6 +63,8 @@ if st.button("Analyze"):
         data = to_json(raw)
         st.subheader("Deal fit score")
         st.write(data.get("deal_fit_score", "unknown"))
+        st.subheader("Confidence level")
+        st.write(data.get("confidence_level", "unknown"))
     except Exception:
         st.error("Could not parse model output as JSON. Here is the raw output:")
         st.code(raw)
