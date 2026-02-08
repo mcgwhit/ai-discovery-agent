@@ -6,6 +6,7 @@ from openai import OpenAI
 st.set_page_config(page_title="AI Discovery Agent", layout="centered")
 st.title("AI Discovery Agent — v1.1 (Structured)")
 
+st.info("Human review required: Outputs are advisory only and should be reviewed before being shared with customers or used for commitments")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 notes = st.text_area("Paste discovery notes here:", height=240)
