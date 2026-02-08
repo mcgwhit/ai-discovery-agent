@@ -27,6 +27,7 @@ Return ONLY valid JSON matching this schema:
   "open_questions": ["..."],
   "demo_agenda": ["..."],
   "missing_info": ["..."]
+  "deal_fit_score": "low | medium | high"
 }
 """
 
@@ -59,6 +60,8 @@ if st.button("Analyze"):
     raw = resp.choices[0].message.content
     try:
         data = to_json(raw)
+        st.subheader("Deal fit score")
+        st.write(data.get("deal_fit_score", "unknown"))
     except Exception:
         st.error("Could not parse model output as JSON. Here is the raw output:")
         st.code(raw)
